@@ -1,0 +1,152 @@
+//Built in Function code
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+void main()
+{
+    int choice , n ;
+    char str1[100] , str2[200] , ch , sub[50] ;
+    while(1)
+    {
+        printf("\n===== String Operations Menu =====\n ");
+        printf("1. Find length (strlen)\n");
+        printf("2. Copy String (strcpy)\n");
+        printf("3. Concatenate Strings  (strcat)\n");
+        printf("4. Compare Strings (strcmp)\n");
+        printf("5. Find Character (strchr)\n");
+        printf("6. Find Substring (strstr)\n");
+        printf("7. Tokenize String (strtok)\n");
+        printf("8. Convert to Uppercase:\n");
+        printf("9. Convert to Lowercase:\n");
+        printf("10. Exit \n ");
+        printf("Enter Your Choice :  ");
+        scanf("%d", &choice);
+        getchar(); // to consume newline
+
+        switch(choice)
+        {
+            case 1 :
+                printf("Enter String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                printf("Length = %lu\n", strlen(str1));
+                break;
+
+            case 2 :
+                printf("Enter Source String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                strcpy(str2 , str1);
+                printf("Copied String = %s\n", str2);
+                break;
+
+            case 3 :
+                printf("Enter First String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                printf("Enter Second String = ");
+                fgets(str2 , 100 , stdin );
+                str2[strcspn(str2 ,"\n")] = '\0';
+                strcat(str1 , str2);
+                printf("Concatenated String = %s\n", str1);
+                break;
+
+            case 4 :
+                printf("Enter First String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                printf("Enter Second String = ");
+                fgets(str2 , 100 , stdin );
+                str2[strcspn(str2 ,"\n")] = '\0';
+                int result = strcmp(str1 , str2);
+                if (result == 0)
+                {
+                    printf("Both Strings are Equal \n");
+                }
+                else if (result < 0)
+                {
+                    printf("First string is Smaller than Second string\n");
+                }
+                else
+                {
+                    printf("First string is greater than Second string\n");
+                }
+                break;
+
+            case 5 :
+                printf("Enter String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                printf("Enter Character to find = ");
+                scanf("%c", &ch);
+                getchar();
+                char *ptr = strchr(str1 , ch);
+                if (ptr != NULL)
+                {
+                    printf("Character '%c' found at position = %ld\n", ch, ptr - str1);
+                }
+                else
+                {
+                    printf("Character '%c' not found in the string\n", ch);
+                }
+                break;
+
+            case 6 :
+                printf("Enter Main String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                char *ptr1 = strstr(str1 , sub);
+                if (ptr1 != NULL)
+                {
+                    printf("Substring found at position = %ld \n", ptr1 - str1);
+                }
+                else
+                {
+                    printf("Substring not found \n");
+                }
+                break;
+
+            case 7 :
+                printf("Enter String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                printf("Tokens are:\n");
+                char *token = strtok(str1 , " ");
+                while(token != NULL)
+                {
+                    printf("%s\n", token);
+                    token = strtok(NULL , " ");
+                }
+                break;
+
+            case 8 :
+                printf("Enter String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                for(int i = 0; str1[i] != '\0'; i++)
+                {
+                    str1[i] = toupper(str1[i]);
+                }
+                printf("Uppercase String = %s\n", str1);
+                break;
+
+            case 9 :
+                printf("Enter String = ");
+                fgets(str1 , 100 , stdin );
+                str1[strcspn(str1 ,"\n")] = '\0';
+                for(int i = 0; str1[i] != '\0'; i++)
+                {
+                    str1[i] = tolower(str1[i]);
+                }
+                printf("Lowercase String = %s\n", str1);
+                break;
+
+            case 10 :
+                printf("Exiting...");
+                return;
+
+            default :
+                printf("Invalid Choice!\n");
+        } // end of switch loop
+    }
+}
